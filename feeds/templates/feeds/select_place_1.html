@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Fengyuan Chen's Datepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'feeds/select_place_1.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="trip_info">
+            <h1 class="title">가고싶은 여행지 선택</h1>
+            <div class="upper_map">
+                <div class="search_box">
+                    <input class="search_input" type="text" placeholder="가고싶은 장소 검색" id="test" onkeypress="onKeyPress(event)" >
+                    <div class="button_div">
+                        <button class="search_button" onclick="onSubmit(event)">입력</button>
+                    </div>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button class="refresh_button">
+                        <img class="refresh_icon"src="{% static 'feeds/img/refresh-01.png' %}" alt="refresh">
+                    </button>
+                </form>
+            </div>
+
+            <div id="map"></div>
+            <form method="POST" action="{% url 'mypage' %}">
+            {% csrf_token %}
+                <input type="hidden" name="place" value="{{place}}">
+                <input type="hidden" name="itier_lat" id="hid" value="">
+                <input type="hidden" name="itier_long" id="hid2" value="">
+                <div class="select_t" style="display:inline">
+                    <p id="sumin" >여행 일정 설정</p>
+                    <div class="time_input_div">
+                        <input class="time_input" type="date" title="start_date" name="start_date" id="start_date" value="", required="required"> 
+                        부터
+                        <input class="time_input" type="date" title="end_date" name="end_date" id="end_date" value="", required="required"> 
+                        까지
+                    </div>
+
+                </div>
+                <div clsss="select_mynum">
+                    <p id="text_mine">인원</p>
+                    <select id="mynum" name="mynum" title="나의 인원">
+                        <option value="">나의 여행 인원</option>
+                            <option value='1'>1명(혼자)</option>
+                            <option value='2'>2명</option>
+                            <option value='3'>3명</option>                              
+                            <option value='4'>4명</option>
+                            <option value='5'>5명</option>
+                            <option value='6'>6명 이상</option>
+                    </select>
+                </div>
+            </div>
+            <div class="my_info">
+                <h3 class="title" >여행 취향 공유하기</h3>
+                <div class="brief_info">
+                    <p>여행 소개 </p>
+                    <textarea name="brief_info" id="so_input" default= cols="30" rows="2" placeholder="간단한 소개를 작성하세요"></textarea>
+                </div>
+                <div class="keyword">
+                    <p> 본인 여행 취향 키워드 입력</p>
+                    <div class="keyword_box">
+                        <p>#키워드1</p>
+                        <input class="keyword_input" id="keyword1" name="keyword1" type="text" placeholder="ex1)맥주좋아!"  onkeypress="onKeyPress(event)" >
+                    </div>
+                    <div class="keyword_box">
+                        <p>#키워드2</p>
+                        <input class="keyword_input" id="keyword2" name="keyword2"  type="text" placeholder="ex2)뚜벅이 여행"  onkeypress="onKeyPress(event)" >
+                    </div>
+                    <div class="keyword_box">
+                        <p>#키워드3</p>
+                        <input class="keyword_input" id="keyword3" name="keyword3"  type="text" placeholder="ex3)도시보다 자연"  onkeypress="onKeyPress(event)" >
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="mate_condi">
+                <h3 class="title" >동행자 조건 설정하기</h3>
+                <div class="mate_num">
+                    <p id="keyword_1">인원 </p>
+                    <select id="mate_num" name="mate_num" title="여행 인원">
+                        <option value="">희망 여행 인원</option>
+                            <option value='1'>1명</option>
+                            <option value='2'>2명</option>
+                            <option value='3'>3명</option>                              
+                            <option value='4'>4명</option>
+                            <option value='5'>5명</option>
+                            <option value='6'>6명 이상</option>
+                    </select>
+                </div>
+                <div class="mate_num">
+                    <p id="keyword_1">희망 연령대</p>
+                    <select id="mate_num" name="mate_age" title="희망연령대">
+                        <option value="">희망 연령대</option>
+                            <option value='10'>10대</option>
+                            <option value='20'>20대</option>
+                            <option value='30'>30대</option>                              
+                            <option value='40'>40대</option>
+                            <option value='50'>50대</option>
+                            <option value='60'>60대 이상</option>
+                    </select>
+                </div>
+                <div class="mate_num">
+                    <p id="keyword_1" >희망 성별</p>
+                    <select id="mate_num" name="mate_gen" title="희망성별">
+                        <option value="">성별 선택</option>
+                            <option value='X'>상관없음</option>
+                            <option value='M'>남성</option>
+                            <option value='F'>여성</option>
+                    </select>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                
+            </div>
+            <input class="submit_button"type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{KAKAO_JS_KEY}}&libraries=services"></script>
+<script type="text/javascript" src="{% static 'feeds/select_place_1.js' %}"></script>
+
+</body>
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/check.css'%}">
+<body>
+    <div class="hihi">
+        <p>🔞부적절한 사진입니다!!!! ㅡㅡ🔞</p>
+        <a href="{% url 'signup' %}">다시 회원가입하세요</a></div>
+    <script src="{% static 'accounts/js/signup.js' %}"></script>
+    <script>
+        let reader = new FileReader();
+        reader.onload = (readerEvent) => {
+            document.querySelector("#foo").setAttribute('src', readerEvent.target.result);
+        };
+        document.querySelector("#ex_file").addEventListener("change", (changeEvent) => {
+            let imgFile = changeEvent.target.files[0];
+            reader.readAsDataURL(imgFile);
+        });
+    </script>
+</body> 
+           
+{% endblock content %}

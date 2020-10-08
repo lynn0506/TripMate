@@ -1,0 +1,1 @@
+web: gunicorn TripMate.wsgi --log-file -

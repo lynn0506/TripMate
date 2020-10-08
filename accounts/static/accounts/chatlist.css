@@ -1,0 +1,285 @@
+*{
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif; 
+}
+body {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(to bottom, #ffffff, #f4f4f4);
+}
+.wrapper{
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+}
+.header_content{
+  position: fixed;
+  left: 0;
+  top: 0;
+  display:flex;
+  align-items:flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 14vh;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  border-radius: 0 0 15px 15px;
+  border: none;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.logo_text{
+
+
+  font-size: 25px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #5f5d65;
+}
+.arrow_img{
+  width: 13.4px;
+  height: 21.2px;
+  position: fixed;
+  z-index: 99999;
+  top:50px;
+  left:35px;
+}
+
+
+
+/* content */
+.go{
+  text-decoration: none;
+}
+.chatlist-contents{
+  padding-top: 14vh;
+  height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+
+}
+.nav {
+  width: 414px;
+  height: 114px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+}
+
+.prev_button {
+    width: 13.4px;
+    height: 21.2px;
+    object-fit: contain;
+}
+
+.nav-list {
+  width: 123px;
+  height: 25px;
+  font-family: Helvetica;
+  font-size: 25px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #5f5d65;
+}
+
+
+/* .list {
+  display:flex;
+  flex-direction: column;
+} */
+
+.message_box {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px auto;
+  width: 100%;
+}
+
+.info1 {
+
+}
+
+.info2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.photo{
+  display: inline-block;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.tripname{
+  text-decoration: none;
+  text-decoration-line: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: 3px;
+
+
+}
+.message_author {
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #5f5d65;
+  margin-bottom: 3px;
+
+}
+
+.message_content {
+
+  object-fit: contain;
+
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: left;
+  color: #cccdd1;
+  margin-bottom: 3px;
+}
+
+.message_sent_at {
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #cccdd1;
+  margin-bottom: 3px;
+}
+
+.message_nums{
+  width: 24.8px;
+  height: 24.8px;
+  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ec5367;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3px;
+}
+.message_nums {
+  font-size: 12px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+
+  color: wheat;
+}
+
+
+
+
+
+
+
+
+/* footer */
+.look_for_mate{
+  width: 64px;
+  height: 64px;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.35);
+  background-color: #ffffff;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 46px;
+}
+.plus_icon{
+    width: 40%;
+    padding-top: 3px;
+    padding-left: 3px;
+    
+}
+.plus_icon_img{
+    width: 100%;
+
+}
+.footer{
+  display:flex;
+  align-items:center;
+  justify-content: space-around;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  color: white;
+  text-align: center;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  z-index: 9999;
+}
+.home_icon_div{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#icon{
+  font-size: 210%;
+  padding: 0;
+  margin: 0;
+  
+}
+.material-icons{
+  color: #d5d5d5;
+
+
+}
+.material-icons:hover{
+
+  color: #2946f6;
+
+}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %} Trip Mate Home {% endblock title %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'feeds/main.css' %}">
+        {% if user.is_authenticated %}
+            {% if user.trip_set.count != 0 %}
+                <div class ="main_content">
+                    <div class="btn-group" id ="button"role="group" aria-label="...">
+                        {% if num == 0 %}
+                            <button type="button" class="btn btn-default"  id= "no_border"><a href="/feeds/main/{{ num }}/"><</a> </button>
+                        {% else %}
+                            <button type="button" class="btn btn-default" id= "no_border" ><a href="/feeds/main/{{ before_num }}/"><</a> </button>
+                        {% endif %}
+                        <button type="button" class="btn btn-default" id= "no_border" >{{mytrip.place}}</button>
+                        {% if num == tot_num_m %}
+                            <button type="button" class="btn btn-default" id= "no_border" ><a href="/feeds/main/{{ num }}/">></a> </button>
+                        {% else %}
+                            <button type="button" class="btn btn-default" id= "no_border" ><a href="/feeds/main/{{ next_num }}/">></a></button>
+                        {% endif %}
+                    </div>
+                    <div id="board">
+                        {% for trip in alltrips%}
+                            <div class="card" id="card_des">
+                                <div class ='card_des'>
+                                    <p style = "display:none;">{{ trip.user.id }}</p>
+                                    <div class = "card_info1">
+                                        <p>{{ trip.user.profile.name}}</p>
+                                    </div>
+                                    <div class = "card_info2">
+                                        <p>{{ trip.place }}</p>
+                                        <p>{{ trip.start_date|date:"y.m.d"}}</p>
+                                    </div>
+                                    <div class= "card_info3">
+                                        <p>{{ trip.keyword1 }}</p>
+                                        <p>{{ trip.keyword2 }}</p>
+                                        <p>{{ trip.keyword3 }}</p>
+                                    </div>  
+                                </div>
+                                    <input type="hidden" id="tripUserId" value="{{trip.user.id}}">
+                                    <input type="hidden" id="tripUserPhoto" value="{{trip.user.profile.photo}}">
+                                    <input type="hidden" id="tripId" value="{{trip.id}}">
+                                    <input type="hidden" id="num" value="{{num}}">
+                                    <input type="hidden" id="userPhoto" value="{{trip.user.profile.photo}}">
+                                    <div><a id = "like" href="{% url 'follow_trip' trip.user.id trip.id num %}"  style="display: none;">like</a> </div>
+                                    <div><a id = "unlike" href="{% url 'unfollow_trip' trip.user.id trip.id num %}" style="display: none;">unlike</a></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="main_content">
+                        <div class="illust_img_div">
+                            <img class="illust_img" src="{% static 'feeds/img/man_img.png' %}" alt="여행지추가하세요">
+                        </div>
+                        <div class="main_ment">
+                            <p>등록된 여행지가 없어요.</p>
+                            <p>여행지 등록하고 동행을 찾아볼까요?</p>
+                        </div>
+                        <div class="main_content_button_div">
+                            <button class="main_content_button" onclick="movePlaceMate();">
+                                여행지 추가하기
+                            </button>
+                        </div>
+                </div>
+                <script>
+                    function movePlaceMate(){
+                        location.href = "{% url 'select_place' %}";
+                    }
+                </script>
+            {% endif %}
+        {% else %}
+            <div class="main_content">
+                <div class="illust_img_div">
+                    <img class="illust_img" src="{% static 'feeds/img/woman_img.png' %}" alt="여행지추가하세요">
+                </div>
+                <div class="main_ment">
+                    <p>아직 Trip Mate에 가입되지않았네요.</p>
+                    <p>간편 회원가입하고 찰떡궁합 동행을 찾아보세요!</p>
+                </div>
+                <div class="main_content_button_div">
+                    <button class="main_content_button" onclick="movePlaceMate();">
+                        로그인 / 회원가입
+                    </button>
+                </div>
+            </div> 
+        </div>
+        <script>
+            function movePlaceMate(){
+                location.href = "{% url 'login' %}";
+            }
+        </script>
+    {% endif%}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="{% static 'feeds/pureswipe.js' %}"></script>
+{% endblock content %}

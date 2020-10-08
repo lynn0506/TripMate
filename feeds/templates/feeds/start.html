@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'feeds/start.css' %}">
+    <title>Trip Mate</title>
+</head>
+<body>
+    <div class="white_logo_div" >
+        <a class="white_logo" href="{% url 'main' %}" id="timeout">
+            <img class="white_logo_img" src="{% static 'feeds/img/white_logo.png'%}" alt="starting_logo">      
+        </a>
+    </div>
+    <script>
+    setTimeout(function(){
+    const link = document.getElementById('timeout')
+    link.click();
+    }, 1000);
+    
+    </script>
+</html>

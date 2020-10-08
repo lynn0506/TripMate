@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>트립메이트</title>
+    <link  rel="stylesheet"  href="{% static 'accounts/login.css' %}" />
+    
+</head>
+
+<body>
+    <div class = "top_box">
+        <div class = 'auth_nav'>
+            <p>로그인하기</p>
+
+        </div>
+        <div class = "comment_box">
+            <div class = 'titles'>
+                <p class = 'top_comment'> 이미 계정이 있으신가요? </p>
+                <p class = 'top_title'> 로그인</p>
+            </div>
+        </div>
+        <img class = 'bluebox_rounded' src = "../../static/accounts/bluebox_rounded.png"/>
+    </div>
+    <div class="form">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class ="input_box">
+                    <div class= "input_des">
+                        <p> 아이디 </p>
+                    </div>
+                    <input class="id" name="user_id" type="text" id="user_id" spellcheck="false" onclick="">
+                </div>
+                <div class = "input_box">
+                    <div class= "input_des">
+                        <p> 비밀번호 </p>
+                    </div>
+                    <input class="pw" name="password" type="password" id="password" >
+                </div>
+                <button type="submit">로그인</button>
+                <div class="error">
+                    <span>{{ error }}</span>
+                </div>
+            </form>
+        <div class= 'or'>
+            <div class= 'gray_line'></div>
+            <p> or</p>
+            <div class= 'gray_line'></div>
+        </div>
+        {% comment %} <div class="social">
+            <div class="naver">
+                <a href="{% provider_login_url 'naver' %}">
+                    <img src="{% static 'accounts/img/naver-login_1.png' %}" alt=""> 
+                    <span>네이버로 로그인/회원가입</span>
+                </a>
+            </div>
+            <div class="google">
+                <a href="{% provider_login_url 'google'%}">
+                    <img src="{% static 'accounts/img/google-login_1.png' %}" alt=""> 
+                    <span>구글로 로그인/회원가입</span>
+                </a>
+            </div>
+        </div> {% endcomment %}
+        <div class="find-signup">
+            <a class="auth_etc" href="#">아이디/비밀번호 찾기</a>
+            <a class="auth_etc" href="{% url 'signup' %}">회원가입</a>
+        </div>
+    </div>
+</body> 
+</html>

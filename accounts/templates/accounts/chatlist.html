@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>트립메이트</title>
+    <link  rel="stylesheet"  href="{% static 'accounts/chatlist.css' %}" />
+</head>
+<body>
+     <div class="header"> 
+        <div class="header_content">
+            <p class="logo_text">Message</p>
+        </div>
+        <div class="arrow_div">
+            <a href="{% url 'main' %}">
+                <img class="arrow_img"src="{% static 'accounts/img/arrow.png' %}" alt="arrow">
+            </a>
+        </div>
+    </div>
+<!-- <div class="nav-list"><a href="{% url 'chatlist' user.id %}">Messages</a></div> -->
+    <div class="wrapper">
+        <div class="chatlist-contents">
+            <div class="list"> 
+                {% if chatlists.count == 0 %} 
+                    <div> 채팅 목록이 없습니다 </div>
+                {% else %}
+                    {% for chat, lastmessage, notice, tripname, friend in chatlists %}
+                        <a class="go" href="{% url 'chatroom' chat.id %}">
+                            <div class="message_box">
+                                <div class="info1">
+                                    <div class="photo">
+                                        {% if chat.author.profile.photo %}
+                                            {{ chat.author.profile.photo }}
+                                        {% endif %}
+                                        <div class="tripname">
+                                            {{ tripname }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info2">
+                                    <div class="message_author">
+                                        {{ friend }}
+                                    </div> 
+                                    <div class="message_content">
+                                        {% if lastmessage.content %}
+                                            {{lastmessage.content}}
+                                        {% else %}
+                                            <div>채팅방이 만들어졌습니다.</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="info3">
+                                    <div class="message_sent_at">
+                                        {% if lastmessage.sent_at %}
+                                            {{lastmessage.sent_at|date:"f"}}
+                                        {% else %}
+                                            <div>지금</div>
+                                        {% endif %}
+                                    </div> 
+                                    <div class="message_nums">
+                                        <p>{{notice}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>          
+                    {% endfor %}
+                {% endif%}
+            </div> 
+        </div> 
+    </div> 
+        <div class="footer" >  
+            <div class="div"> 
+                <a href="{% url 'main' %}">
+                    <span class="material-icons home_icon" id="icon"> home </span>
+                </a> 
+            </div> 
+            <div class="look_for_mate">
+                <a  class="plus_icon" href="{% url 'select_place' %}">
+                    <img class="plus_icon_img" src="{% static 'feeds/img/plus.png' %}" alt="plus">
+                </a> 
+            </div> 
+            <div class="div"> 
+                <a href="{% url 'mypage' %}">
+                    <span class="material-icons" id="icon">person</span>
+                </a> 
+            </div> 
+        </div>
+    </body> 
+</html>

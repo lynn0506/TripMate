@@ -1,0 +1,24 @@
+html, body{
+    height: 100%;
+}
+body{
+    margin: 0;
+    background-image: linear-gradient(to bottom, #5069ff 27%, #2946f6);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.white_logo_div{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+ 
+}
+.white_logo{
+    width: 55%;
+    margin: 85% auto;
+    height: 10%;
+}
+.white_logo_img{
+    width: 100%;
+}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'feeds/mypage.css'%}">
+{% if user.is_authenticated %}
+    <div class="wrapper">
+        <h1 class="title">My profile</h1>
+        <div class="my_info">
+
+            <div class="profile_img_div profile_img">
+                <img class="profile_img" src="{{user.profile.photo}}" alt="profile">
+            </div>
+            
+            <div class="profile_info">
+                <p class="usernickname">{{ user.profile.nickname }}</p>
+                <div class="profile_info_detail">
+                    <p class="userage">{{ user.profile.age }}세</p>
+                    <p class="usergender">({{ user.profile.gender.1 }})</p>
+                </div>
+                <a class="logout" href="{% url 'logout' %}">Logout</a>
+
+            </div>
+
+            <div class="profile_edit">
+                <a href="{% url 'mypage_edit' %}">
+                    <span class="material-icons" id="setting_icon">
+                        settings
+                    </span>
+                </a>
+            </div>
+            
+        </div>
+
+        <h1 class="title">My Trip</h1>
+        <div class="my_trip"> 
+
+                <div class="my-trip-detail">
+                    {% if trips %}
+                        {% for trip in trips %}
+                            <a href="{% url 'mypage_detail' trip.place %}">
+
+                                {{trip.place}}
+
+                            </a>
+                        {% endfor %}
+                    {% endif%}
+                </div>
+
+        </div> 
+    </div>
+
+
+{% else %}
+    <div class="main_content">
+        <div class="illust_img_div">
+            <img class="illust_img" src="{% static 'feeds/img/woman_img.png' %}" alt="여행지추가하세요">
+        </div>
+        <div class="main_ment">
+            <p>아직 Trip Mate에 가입되지않았네요.</p>
+            <p>간편 회원가입하고 찰떡궁합 동행을 찾아보세요!</p>
+        </div>
+        <div class="main_content_button_div">
+            <button class="main_content_button" onclick="movePlaceMate();">
+                로그인 / 회원가입
+            </button>
+        </div>
+
+    </div>
+    <script>
+        function movePlaceMate(){
+        }
+    </script>
+{% endif%}
+{% endblock content %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link  rel="stylesheet"  href="{% static '/feeds/mypage_edit.css' %}" />
+<div class="form">
+    <form id="submit" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class ="profile">
+            <div class= "profile_des">
+                <p> 프로필 사진 </p>
+            </div>
+            <div class="filebox">
+                <img id="foo"src="#"/>
+                <label for="ex_file">업로드</label> 
+                <input type="file" id="ex_file" name="img" alt="프로필~"> 
+            </div>
+        </div>
+        <div class ="input_box">
+            <div class= "input_des">
+                <p> 이름 </p>
+            </div>
+            
+            <input class = "input" id="name" name="name" placeholder="{{myInfo.name}}" value ="{{myInfo.name}}" type="text" >
+        </div>
+        <div class ="input_box">
+            <div class= "input_des">
+                <p> 아이디(5자 이상) </p>
+            </div>
+            <div class="with-button">
+                <input class = "input" id="user-id" name="user_id" check_result="fail" 
+                        type="text" minlength="5" maxlength="15" placeholder="{{myInfo.user.username}}" value="{{myInfo.user.username}}">
+                {% comment %} <button class="id-check" type="button">중복확인</button> {% endcomment %}
+                {% comment %} <div id="id-confirm" class="available-1 check-confirm">
+                    <span>사용가능</span>
+                </div> {% endcomment %}
+            </div>
+        </div>
+        <div class ="input_box">
+            <div class= "input_des">
+                <p> 비밀번호 </p>
+            </div>
+            <input class = "input" id="pw1" name="password" type="password" placeholder="******" >
+        </div>
+        <div class ="input_box">
+            <div class= "input_des">
+                <p> 비밀번호 확인 </p>
+            </div>
+            <input class = "input" id="pw2"  name="password2" type="password"  placeholder="******" >
+        </div>
+        <div class ="input_box">
+            <div class= "input_des">
+                <p> 닉네임(2-8자)</p>
+            </div>
+            <div class="with-button">
+                <input class = "input" id="nickname" name="nickname" check_result="fail"
+                        type="text" minlength="2" maxlength="15" value="{{myInfo.nickname}}" >
+                {% comment %} <button class="nk-check" type="button">중복확인</button> {% endcomment %}
+                {% comment %} <div id="nk-confirm" class="available-2 check-confirm">
+                    <span>사용가능</span>
+                </div> {% endcomment %}
+            </div>
+        </div>
+        <div class ="input_box">
+            <div class= "input_des">
+                <p> 나이 </p>
+            </div>
+            <input class = "input" id="age" value="{{myInfo.age}}" name="age" type="number" min="18" max="110" > 
+        </div>
+        <div class ="input_box">
+            <div class= "input_des">
+                <p> 성별 </p>
+            </div>
+            <div class ="select_gender">
+                <div class="gender_choice">
+                    <label for="male">남성</label>
+                    <input class ="gender" name="gender" type="checkbox" id="male" value="male" onclick = "doOpenCheck(this)" required>
+                </div>
+                <div class="gender_choice">     
+                    <label for="female">여성</label>
+                    <input class ="gender" name="gender" type="checkbox" id="female" value="female" onclick = "doOpenCheck(this)">
+                </div>
+            </div> 
+        </div>
+        <button type="submit" class="signup">수정하기</button> 
+    </form> 
+</div> 
+    <script>
+        let reader = new FileReader();
+        reader.onload = (readerEvent) => {
+            document.querySelector("#foo").setAttribute('src', readerEvent.target.result);
+        };
+        document.querySelector("#ex_file").addEventListener("change", (changeEvent) => {
+            let imgFile = changeEvent.target.files[0];
+            reader.readAsDataURL(imgFile);
+        });
+    </script>
+    <script type="text/javascript" src="{% static 'feeds/mypage_edit.js' %}"></script>
+{% endblock content %}

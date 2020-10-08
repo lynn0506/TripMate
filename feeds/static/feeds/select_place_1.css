@@ -1,0 +1,218 @@
+.wrapper{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.45;
+    letter-spacing: normal;
+    text-align: left;
+    color: #363636;
+}
+.upper_map{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top: 10px;
+    z-index: 100;
+}
+.search_box{
+    width: 70%;
+    height: 38px;
+    border-radius: 5px;
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: white;
+    display: flex;
+    align-items: center;
+
+
+    opacity: 95%;
+}
+#test{
+    border: none;
+    width: 100%;
+
+}
+.button_div{
+    width: 20%;
+    margin-right: 2px;
+}
+.search_button{
+    background-color: white;
+    border: none;
+    width: 100%;
+    padding: 0;
+
+}
+.refresh_button{
+    background-color: white;
+    border: none;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.16);
+    padding: 5px;
+    border-radius: 5px;
+}
+.refresh_icon{
+    width: 30px;
+    padding: 5px;
+}
+#map{
+    position: relative;
+    top: -40px;
+}
+.select_t{
+    display:inline
+}
+input[type=date], input[type=time], input[type=datetime-local], input[type=month]{
+    width:90%;
+    margin: 3px 0;
+}
+#text_mine{
+    position: relative;
+    top: -40px;
+
+}
+#sumin{
+    position: relative;
+    top: -30px;
+}
+
+.time_input_div{
+    position: relative;
+    top: -40px;
+}
+#mynum{
+    width:40%;
+    height: 40px;
+    position: relative;
+    top: -40px;
+    margin: 0;
+    z-index: 50;
+}
+.brief_info{
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+    background-color: white;
+}
+#so_input{
+    width: 100%;
+    border: none;
+    height: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #d1cccc;
+    padding: 0;
+    margin-bottom: 5px;
+}
+.my_info{
+    position: relative;
+    top: -40px;
+    width: 100%;
+
+}
+.keyword{
+    position: relative;
+    top: 20px;
+}
+.keyword_box{
+    width: 100%;
+    border-radius: 5px;
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px auto;
+}
+.keyword_input{
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #d1cccc;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+}
+#keyword_1{
+    margin-left: 8px;
+    margin-top: 8px;
+
+}
+.mate_condi{
+    width: 100%;
+}
+.mate_num{
+    width: 100%;
+    border-radius: 5px;
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    margin: 10px auto;
+
+}
+#mate_num{
+    width: 100%;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #d1cccc;
+
+    margin: 0 10px 10px;
+
+}
+.submit_button{
+    position: relative;
+    top: -70px;
+    width: 65%;
+    height: 50px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-image: linear-gradient(to bottom, #556cf7, #2946f6);
+    border: none;
+    border-radius: 40px 14px 40px 14px;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: 0.48px;
+    text-align: center;
+    color: #ffffff;
+    
+}

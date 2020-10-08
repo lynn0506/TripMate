@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+마이페이지 상세보기
+    {% for trip in trips%}
+        <a href="{% url 'mypage_detail_edit' trip.place %}">수정하기</a>
+        <p>유저 이름 : {{trip.user}}</p>
+        <p>장소 이름 : {{trip.place}}</p>
+        <div id="map" style="width:400px;height:350px;"></div>  
+        <p id="lats" value={{trip.itier_lat}}></p>
+        <p id="longs" value={{trip.itier_long}}></p>
+        <p>우리 동행 인원 : {{trip.my_num}}</p>
+        <p>시작 날짜 : {{trip.start_date}}</p>
+        <p>종료 날짜 : {{trip.end_date}}</p>
+        <p>하고싶은 말 : {{trip.bref_info}}</p>
+        <p>#{{trip.keyword1}} #{{trip.keyword2}} #{{trip.keyword3}}</p>
+        <p>선호 성별 : {{trip.want_gender}}</p>
+        <p>선호 인원 : {{trip.want_num}}</p>
+        <p>선호 나이 : {{trip.want_age}}</p>
+    {% endfor %}
+  
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{KAKAO_JS_KEY}}"></script>
+<script type="text/javascript" src="{% static 'feeds/mypage_detail.js' %}"></script>
+
+지도 ~~~ 
+
+{% endblock content %}

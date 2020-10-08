@@ -1,0 +1,44 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+asgiref = "*"
+boto3 = "*"
+botocore = "*"
+certifi = "*"
+chardet = "*"
+defusedxml = "*"
+dj-database-url = "*"
+django = "*"
+django-allauth = "*"
+django-multiselectfield = "*"
+django-pagination = "*"
+django-storages = "*"
+docutils = "*"
+gunicorn = "*"
+idna = "*"
+jmespath = "*"
+oauthlib = "*"
+psycopg2-binary = "*"
+python-dateutil = "*"
+python3-openid = "*"
+pytz = "*"
+requests = "*"
+requests-oauthlib = "*"
+s3transfer = "*"
+sightengine = "*"
+six = "*"
+sqlparse = "*"
+text-unidecode = "*"
+urllib3 = "*"
+whitenoise = "*"
+Django = "*"
+Faker = "*"
+Pillow = "*"
+
+[requires]
+python_version = "3.7"

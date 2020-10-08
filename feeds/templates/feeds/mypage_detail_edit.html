@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+{% for trip in trips %}
+    <div class="trip_info">
+        <div>지도 수정하기</div>
+        <div id="map" style="width:450px;height:330px;"></div>
+        <p>
+            <button onclick="hideMarkers()">마커 리셋</button>
+        </p> 
+        <p id="lats" value={{trip.itier_lat}}></p>
+        <p id="longs" value={{trip.itier_long}}></p>
+        <div class="select_t" style="display:inline">
+            <h5>일정</h5>
+
+        <form method="POST" action="{% url 'mypage' %}">
+        {% csrf_token %}
+
+            <input type="hidden" name="place" value="{{trip.place}}">
+            <input type="hidden" name="itier_lat" id="hid" value="">
+            <input type="hidden" name="itier_long" id="hid2" value="">
+            <div class="select_t" style="display:inline">
+                <h3>일정 설정하기</h3>
+                <input type="date" title="start_date" name="start_date" id="start_date" value="{{trip.start_date|date:'yy-m-d'}}"> 
+                부터
+                <input type="date" title="end_date" name="end_date" id="end_date" value="{{trip.end_date|date:'yy-m-d'}}"> 
+                까지
+
+            </div>
+            <div clsss="select_mynum">
+                <h5>인원</h5>
+                <select id="mynum" name="mynum" title="나의 인원">
+                    <option value="{{trip.mynum}}">나의 여행 인원</option>
+                        <option value='1'>1명(혼자)</option>
+                        <option value='2'>2명</option>
+                        <option value='3'>3명</option>										
+                        <option value='4'>4명</option>
+                        <option value='5'>5명</option>
+                        <option value='6'>6명 이상</option>
+                </select>
+            </div>
+        </div>
+        <div class="my_info">
+            <h2>내 정보 설정하기</h2>
+            <div class="brief_info">
+                <p>여행 소개</p>
+                <p><textarea name="brief_info" default= cols="30" rows="2" value="">{{trip.bref_info}}</textarea></p>
+            </div>
+            <div class="keyword">
+                <p>키워드를 선택해보세요</p>
+                <p>#키워드1 
+                    <input type="radio" name="keyword11" checked="checked" value="{{trip.keyword1}}">{{trip.keyword1}}</p>
+                    <input type="radio" name="keyword1" value="미술관">#미술관
+                    <input type="radio" name="keyword1" value="식도락">#식도락
+                    <input type="radio" name="keyword1" value="사진찍는">#사진찍는
+                    <input type="radio" name="keyword1" value="뚜벅이">#뚜벅이
+                    <input type="radio" name="keyword1" value="술좋아!">#술좋아!
+                    <input type="radio" name="keyword1" value="관광보다여유">#관광보다여유
+                <p>#키워드2
+                    <input type="radio" name="keyword22" checked="checked" value="{{trip.keyword2}}">{{trip.keyword2}}</p>
+                    <input type="radio" name="keyword2" value="미술관">#미술관 
+                    <input type="radio" name="keyword2" value="식도락">#식도락
+                    <input type="radio" name="keyword2" value="사진찍는">#사진찍는
+                    <input type="radio" name="keyword2" value="뚜벅이">#뚜벅이
+                    <input type="radio" name="keyword2" value="술좋아!">#술좋아!
+                    <input type="radio" name="keyword2" value="관광보다여유">#관광보다여유
+                <p>#키워드3
+                    <input type="radio" name="keyword33" checked="checked" value="{{trip.keyword3}}">{{trip.keyword3}}</p>
+                    <input type="radio" name="keyword3" value="미술관">#미술관
+                    <input type="radio" name="keyword3" value="식도락">#식도락
+                    <input type="radio" name="keyword3" value="사진찍는">#사진찍는
+                    <input type="radio" name="keyword3" value="뚜벅이">#뚜벅이
+                    <input type="radio" name="keyword3" value="술좋아!">#술좋아!
+                    <input type="radio" name="keyword3" value="관광보다여유">#관광보다여유
+            </div>
+        </div>
+        <div class="mate_condi">
+            <h2>동행자 조건 설정하기</h2>
+            <div class="mate_num">
+                <p>인원</p>
+                <select id="mate_num" name="mate_num" title="여행 인원">
+                    <option selected>{{trip.want_num}}</option>
+                        <option value='1'>1명</option>
+                        <option value='2'>2명</option>
+                        <option value='3'>3명</option>										
+                        <option value='4'>4명</option>
+                        <option value='5'>5명</option>
+                        <option value='6'>6명 이상</option>
+                </select>
+            </div>
+            <div class="mate_age">
+                <p>희망 연령대</p>
+                <select id="mate_age" name="mate_age" title="희망연령대">
+                    <option selected>{{trip.want_age}}</option>
+                        <option value='10'>10대</option>
+                        <option value='20'>20대</option>
+                        <option value='30'>30대</option>										
+                        <option value='40'>40대</option>
+                        <option value='50'>50대</option>
+                        <option value='60'>60대 이상</option>
+                </select>
+            </div>
+            <div class="mate_gen">
+                <p>희망 성별</p>
+                <select id="mate_gen" name="mate_gen" title="희망성별">
+                    <option selected>{{trip.want_gender}}</option>
+                        <option value='X'>상관없음</option>
+                        <option value='M'>남성</option>
+                        <option value='F'>여성</option>
+                </select>
+            </div>
+        </div>
+        <input type="submit" value="Edit">
+    </form>
+    </div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{KAKAO_JS_KEY}}&libraries=services"></script>
+<script type="text/javascript" src="{% static 'feeds/mypage_detail_edit.js' %}"></script>
+
+{% endfor %}
+{% endblock content %}

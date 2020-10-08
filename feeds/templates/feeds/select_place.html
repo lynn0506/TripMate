@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'feeds/select_place.css'%}">
+<div class="wrapper">
+    <div class="search">
+        <form class = "search-form" method="get">
+            <div class = "search-text_div">
+                <input type="text" name="query" class = "search-text" size ="30" value = "{{ query }}" placeholder = "여행할 도시를 검색하세요.">
+                <button type="submit">
+                    <img class="search_icon" src="{% static 'feeds/img/search.png' %}" alt="">
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="place_list_div">
+
+    {% if jeju == 'o' %}
+        <div class="place_div">
+                <img class="place_img" src="{% static 'feeds/img/jeju.jpg' %}" alt="place_img">
+            <p class="place_name">제주도 동행 찾는 중</p>
+        </div>
+    {% else %}
+        <div class="place_div">
+            <a class="place_img_a"href="{% url 'select_detail_1' '제주' %}">
+                <img class="place_img" src="{% static 'feeds/img/jeju.jpg' %}" alt="place_img">
+            </a>
+            <p class="place_name">제주도</p>
+        </div>
+    {% endif %}
+    {% if yeosu == 'o'%}
+    <div class="place_list_div">
+        <div class="place_div">
+                <img class="place_img" src="{% static 'feeds/img/yeoso.jpg' %}" alt="place_img">
+            <p class="place_name">여수 동행 찾는 중</p>
+    </div>
+    {% else %}
+        <div class="place_list_div">
+            <div class="place_div">
+                <a class="place_img_a"href="{% url 'select_detail_1' '여수' %}">
+                    <img class="place_img" src="{% static 'feeds/img/yeoso.jpg' %}" alt="place_img">
+                </a>
+                <p class="place_name">여수</p>
+        </div>
+    {% endif %}
+    {% if jeonju == 'o'%}
+        <div class="place_list_div">
+            <div class="place_div">
+                <a class="place_img_a"href="{% url 'select_detail_1' '전주' %}">
+                    <img class="place_img" src="{% static 'feeds/img/jeonju.jpg' %}" alt="place_img">
+                </a>
+                <p class="place_name">전주 동행 찾는 중</p>
+        </div>
+    {% else %}
+        <div class="place_list_div">
+            <div class="place_div">
+                <a class="place_img_a"href="{% url 'select_detail_1' '전주' %}">
+                    <img class="place_img" src="{% static 'feeds/img/jeonju.jpg' %}" alt="place_img">
+                </a>
+                <p class="place_name">전주</p>
+        </div>
+    {% endif %}
+    </div>
+    
+{% comment %} 
+    {% for loc in locations %}
+        <a href="/feeds/select/{{ loc.id }}" class="location">
+            {{ loc.name }}
+
+        </a> 
+    {% endfor %}
+
+    {% if user.is_superuser %}
+        <a href="/feeds/select/addplace">여행장소 추가</a>
+    {% endif %} {% endcomment %}
+</div>
+
+{% endblock content %}

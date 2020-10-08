@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>트립메이트</title>
+</head>
+<body>
+    <div class="form">
+        <div class="nav">
+            <div class="nav-list"><a href="{% url 'user_notice' user.id %}">알림</a></div>
+            <div class="nav-list"><a href="{% url 'chatlist' user.id %}">채팅방</a></div>
+        </div> 
+        <div class="notice-contents">
+            <div class="info">
+                <div class="title">
+                    <span> 알림 </span> 
+                    <span class="count">{{count}} </span> 
+                </div> 
+            <div class="list"> 
+                {% for notice in posts %}
+                    <form action="{% url 'make_chat' notice.id user.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="notice-container">
+                            <span class="notice-nickname">
+                                {{ notice.notice_from.profile.nickname }}님이 회원님에게 좋아요를 보냈습니다. 
+                            </span> 
+                            <input id="like" name="like" type="button" value="승낙">
+                            <input id="dislike" name="dislike" type="button" value="거절">
+                        </div>
+                        <div class="right-content">
+                            <span class="date">{{ notice.created_at|date:'y.m.d' }}</span>
+                            <!-- notice.checked = True면 읽은것, False면 안읽은것 -->
+                        </div>
+                        <div name="read" class="check-count">{{ notice.checked }}</div>
+                    </form> 
+                {% endfor %}
+            </div> 
+            페이지 체크
+            <div class="page_numbers" >
+                    {% if posts.has_previous %}
+                        <div class = "previous">
+                            <a href="?page={{posts.previous_page_number}}"> 이전 </a>
+                        </div> 
+                    {% endif %}
+                    {% for num in paginator_range %} 
+                        {% if posts.number == num %}
+                            <div class = "num1" >{{ num }}</div> 
+                        {% else %}
+                            <a href="?page={{num}}">
+                                <div class = "num2" >{{ num }}</div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if posts.has_next %}
+                        <div class = "next">
+                            <a href="?page={{posts.next_page_number}}"> 다음</a> 
+                        </div>
+                    {% endif %}
+                </div>     
+            </div>
+        </div> 
+    </div> 
+</body> 
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'accounts/chat.css' %}" />
+    <title>Chatroom</title>
+</head>
+<body>    
+    <div class="header"> 
+        <div class="header_content">
+            <div class="title">
+                <span class = 'sender'>{{ friend }}</span>
+                <span class = 'trip'>({{ trip }}여행)</span>
+            </div> 
+        </div>
+        <div class="arrow_div">
+            <a href="{% url 'chatlist' user.id %}">
+                <img class="arrow_img"src="{% static 'accounts/img/arrow.png' %}" alt="arrow">
+            </a>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="chatlist-contents"> 
+            <div class="form">
+                <div class="nav">
+                    <div class="chat">
+                        {% for message in messages|dictsort:'sent_at' %}
+                            {% if message.author.id == request.user.id %}
+                                <div class="send" >
+                                    <div class="chat_date">
+                                        <span>{{message.sent_at|date:"f"}}</span> 
+                                    </div> 
+                                    <div class="chat_con send_content">
+                                        <span class="message_content">{{message.content}} </span> 
+                                    </div> 
+                                </div> 
+                            {% else %}
+                                <div class="receive">
+                                    <div class="chat_con receive_content">
+                                        <span>{{message.content}}</span> 
+                                    </div> 
+                                    <div class="chat_date">
+                                        <span>{{message.sent_at|date:"f"}}</span> 
+                                    </div> 
+                                </div> 
+                            {% endif %}
+                        {% endfor %}    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class = "sending">
+                <form id="newmessage" action="{% url 'send_message' rid request.user.id %} "method="POST">
+                    {% csrf_token %}
+                    <div class = "typing" >
+                        <div><input class="sendbox" id="sendbox" type="text" placeholder="메세지를 입력하세요." name="content"  maxlength="200"></div>
+                        <button class="submit"type="submit">전송</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{% static 'accounts/js/chatroom.js' %}"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

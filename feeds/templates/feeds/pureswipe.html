@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'feeds/pureswipe.css' %}">
+
+{% for trip in alltrips %}
+    <div id="board">
+        <div class="card">
+            <div class ='card_des'>
+                <p>{{ trip.user.id }}</p>
+                <p>{{ trip.place }}</p>
+                <p>{{ trip.start_date }}</p>
+                <p>{{ trip.keyword1 }}</p>
+                <p>{{ trip.keyword2 }}</p>
+                <p>{{ trip.keyword3 }}</p>  
+            </div>
+        </div>
+        <input type="hidden" id="tripUserId" value="{{trip.user.id}}">
+        <input type="hidden" id="tripId" value="{{trip.id}}">
+        <input type="hidden" id="num" value="{{num}}">
+    </div>
+    <a id = "like" href="{% url 'follow_trip' trip.user.id trip.id %}">like</a>
+    <a id = "unlike" href="{% url 'unfollow_trip' trip.user.id trip.id %}">unlike</a>
+{% endfor %}
+    <div class = 'default' style = "background-color: blue; width:30px; height: 30px;">
+        <div class = 'reload' onclick="endpoint()">새로고침 </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <script src="../../static/feeds/pureswipe.js"></script>
+
+
+    
+{% endblock content %}
