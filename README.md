@@ -1,7 +1,7 @@
 **TripMate(트립메이트)**
 
 *2020.08.15-16 연합 해커톤*
-
+* Team Member: 김동현, 고서영, 문지원, 박수민, 정은주
 + heroku 배포 Url: https://hellotripmate.herokuapp.com  
 
 **서비스 소개**     
